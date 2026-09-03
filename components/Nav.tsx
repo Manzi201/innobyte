@@ -12,11 +12,18 @@ const links = [
   { label: 'Contact',  href: '/contact' },
 ]
 
+// Pages that start with a dark hero — nav can be transparent + white text
+const DARK_HERO_PAGES = ['/', '/about', '/contact']
+
 export default function Nav() {
-  const pathname = usePathname()
-  const [scrolled, setScrolled] = useState(false)
-  const [menuOpen, setMenuOpen] = useState(false)
-  const [isMobile, setIsMobile] = useState(false)
+  const pathname  = usePathname()
+  const [scrolled, setScrolled]  = useState(false)
+  const [menuOpen, setMenuOpen]  = useState(false)
+  const [isMobile, setIsMobile]  = useState(false)
+
+  const hasDarkHero = DARK_HERO_PAGES.includes(pathname)
+  // Nav is "light mode" when scrolled OR when the page doesn't have a dark hero
+  const light = scrolled || !hasDarkHero
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50)
@@ -35,15 +42,20 @@ export default function Nav() {
   const isActive = (href: string) =>
     href === '/' ? pathname === '/' : pathname.startsWith(href.replace('/#', '/'))
 
+  const linkColor = (href: string) => {
+    if (isActive(href)) return light ? '#0a0a0a' : '#fff'
+    return light ? '#3d3d3d' : 'rgba(255,255,255,0.75)'
+  }
+
   return (
     <>
       <header style={{
         position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100,
         height: '72px',
-        backgroundColor: scrolled ? 'rgba(250,250,248,0.96)' : 'transparent',
-        backdropFilter: scrolled ? 'blur(16px)' : 'none',
-        borderBottom: scrolled ? '1px solid #e8e8e8' : 'none',
-        transition: 'background 0.4s, border 0.4s',
+        backgroundColor: light ? 'rgba(250,250,248,0.97)' : 'transparent',
+        backdropFilter: light ? 'blur(16px)' : 'none',
+        borderBottom: light ? '1px solid #e8e8e8' : 'none',
+        transition: 'background 0.35s, border 0.35s, backdrop-filter 0.35s',
       }}>
         <div style={{
           maxWidth: '1280px', margin: '0 auto', padding: '0 2.5rem',
@@ -52,7 +64,7 @@ export default function Nav() {
 
           {/* Logo */}
           <Link href="/" style={{ textDecoration: 'none' }}>
-            <Logo scrolled={scrolled} />
+            <Logo scrolled={light} />
           </Link>
 
           {/* Desktop nav */}
@@ -68,14 +80,11 @@ export default function Nav() {
                     fontWeight: 600,
                     letterSpacing: '0.1em',
                     textTransform: 'uppercase',
-                    color: isActive(l.href)
-                      ? '#0a0a0a'
-                      : scrolled ? '#0a0a0a' : 'rgba(255,255,255,0.85)',
+                    color: linkColor(l.href),
                     textDecoration: 'none',
-                    position: 'relative',
                     paddingBottom: '2px',
                     borderBottom: isActive(l.href)
-                      ? scrolled ? '1px solid #0a0a0a' : '1px solid rgba(255,255,255,0.7)'
+                      ? `1px solid ${light ? '#0a0a0a' : 'rgba(255,255,255,0.7)'}`
                       : '1px solid transparent',
                     transition: 'color 0.2s, border-color 0.2s',
                   }}
@@ -83,6 +92,8 @@ export default function Nav() {
                   {l.label}
                 </Link>
               ))}
+
+              {/* CTA button */}
               <Link
                 href="/contact"
                 style={{
@@ -91,21 +102,28 @@ export default function Nav() {
                   fontWeight: 600,
                   letterSpacing: '0.1em',
                   textTransform: 'uppercase',
-                  color: scrolled ? '#0a0a0a' : '#fff',
+                  color: light ? '#0a0a0a' : '#fff',
                   textDecoration: 'none',
-                  padding: '0.6rem 1.6rem',
-                  border: scrolled ? '1.5px solid #0a0a0a' : '1.5px solid rgba(255,255,255,0.5)',
-                  transition: 'background 0.2s, color 0.2s',
+                  padding: '0.55rem 1.5rem',
+                  border: light ? '1.5px solid #0a0a0a' : '1.5px solid rgba(255,255,255,0.5)',
+                  transition: 'background 0.2s, color 0.2s, border-color 0.2s',
+                  display: 'inline-block',
                 }}
                 onMouseEnter={(e) => {
                   const el = e.currentTarget as HTMLAnchorElement
-                  el.style.background = scrolled ? '#0a0a0a' : 'rgba(255,255,255,0.12)'
-                  if (scrolled) el.style.color = '#fff'
+                  if (light) {
+                    el.style.background = '#0a0a0a'
+                    el.style.color = '#fff'
+                  } else {
+                    el.style.background = 'rgba(255,255,255,0.1)'
+                    el.style.borderColor = 'rgba(255,255,255,0.8)'
+                  }
                 }}
                 onMouseLeave={(e) => {
                   const el = e.currentTarget as HTMLAnchorElement
                   el.style.background = 'transparent'
-                  el.style.color = scrolled ? '#0a0a0a' : '#fff'
+                  el.style.color = light ? '#0a0a0a' : '#fff'
+                  el.style.borderColor = light ? '#0a0a0a' : 'rgba(255,255,255,0.5)'
                 }}
               >
                 Get Quote
@@ -118,21 +136,20 @@ export default function Nav() {
             <button
               onClick={() => setMenuOpen(!menuOpen)}
               aria-label="Toggle menu"
-              style={{
-                background: 'none', border: 'none', cursor: 'pointer',
-                display: 'flex', flexDirection: 'column', gap: '5px', padding: '4px',
-              }}
+              style={{ background: 'none', border: 'none', cursor: 'pointer', display: 'flex', flexDirection: 'column', gap: '5px', padding: '4px' }}
             >
               {[0, 1, 2].map((i) => (
                 <span key={i} style={{
-                  display: 'block', width: '22px', height: '1.5px',
-                  backgroundColor: scrolled ? '#0a0a0a' : '#fff',
+                  display: 'block',
+                  width: '22px',
+                  height: '1.5px',
+                  backgroundColor: light ? '#0a0a0a' : '#fff',
                   transform: menuOpen
                     ? (i === 0 ? 'rotate(45deg) translate(4.5px, 4.5px)'
                       : i === 2 ? 'rotate(-45deg) translate(4.5px, -4.5px)' : 'none')
                     : 'none',
                   opacity: menuOpen && i === 1 ? 0 : 1,
-                  transition: 'transform 0.22s, opacity 0.22s',
+                  transition: 'transform 0.22s, opacity 0.22s, background-color 0.35s',
                 }} />
               ))}
             </button>
@@ -158,7 +175,7 @@ export default function Nav() {
                 fontFamily: 'Syne, sans-serif',
                 fontSize: '1.4rem',
                 fontWeight: 700,
-                color: '#0a0a0a',
+                color: isActive(l.href) ? '#0a0a0a' : '#3d3d3d',
                 textDecoration: 'none',
                 padding: '0.75rem 0',
                 borderBottom: '1px solid #e8e8e8',
