@@ -1,3 +1,5 @@
+'use client'
+
 const REASONS = [
   { icon: '🎯', title: 'Results-Focused', desc: 'Every project is built with your business goals in mind. We deliver work that actually works.' },
   { icon: '⚡', title: 'Fast Turnaround', desc: 'No long waits. We respect your time and deliver projects on schedule, every time.' },

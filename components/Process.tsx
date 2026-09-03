@@ -1,3 +1,5 @@
+'use client'
+
 const STEPS = [
   { num: '01', title: 'Tell Us What You Need', desc: 'Reach out via WhatsApp, email or our contact form. Describe your project — we listen carefully.' },
   { num: '02', title: 'We Plan & Quote', desc: 'We review your needs and send a clear, affordable quote with timeline. No hidden costs.' },
