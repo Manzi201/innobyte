@@ -44,10 +44,26 @@ export default function Services() {
       <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
 
         {/* Header */}
-        <div data-reveal style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '5rem', flexWrap: 'wrap', gap: '2rem', borderBottom: '1px solid #e8e8e8', paddingBottom: '3rem' }}>
+        <div data-reveal style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'flex-end',
+          marginBottom: '4rem',
+          flexWrap: 'wrap',
+          gap: '2rem',
+          borderBottom: '1px solid #e8e8e8',
+          paddingBottom: '3rem',
+        }}>
           <div>
             <div className="eyebrow">What We Do</div>
-            <h2 style={{ fontFamily: 'Syne, sans-serif', fontSize: 'clamp(2.2rem, 5vw, 3.5rem)', fontWeight: 800, color: '#0a0a0a', letterSpacing: '-0.04em', lineHeight: 1 }}>
+            <h2 style={{
+              fontFamily: 'Syne, sans-serif',
+              fontSize: 'clamp(2.2rem, 5vw, 3.5rem)',
+              fontWeight: 800,
+              color: '#0a0a0a',
+              letterSpacing: '-0.04em',
+              lineHeight: 1,
+            }}>
               Our Services
             </h2>
           </div>
@@ -59,80 +75,74 @@ export default function Services() {
         {/* Service list */}
         <div>
           {SERVICES.map((s, i) => (
-            <a
-              key={s.title}
-              href="/contact"
-              data-reveal
-              style={{
-                transitionDelay: `${i * 0.05}s`,
-                display: 'grid',
-                gridTemplateColumns: '72px 1fr auto',
-                alignItems: 'center',
-                gap: '2rem',
-                padding: '2rem 0',
-                borderBottom: '1px solid #e8e8e8',
-                textDecoration: 'none',
-                cursor: 'pointer',
-                transition: 'background 0.2s',
-              }}
-              onMouseEnter={(e) => {
-                const el = e.currentTarget as HTMLElement
-                el.style.paddingLeft = '1.5rem'
-                el.style.paddingRight = '1.5rem'
-                el.style.margin = '0 -1.5rem'
-                el.style.background = '#f0efeb'
-                el.style.borderRadius = '4px'
-              }}
-              onMouseLeave={(e) => {
-                const el = e.currentTarget as HTMLElement
-                el.style.paddingLeft = '0'
-                el.style.paddingRight = '0'
-                el.style.margin = '0'
-                el.style.background = 'transparent'
-                el.style.borderRadius = '0'
-              }}
-            >
-              {/* Number */}
-              <span style={{
-                fontFamily: 'Syne, sans-serif',
-                fontSize: '0.7rem',
-                fontWeight: 600,
-                letterSpacing: '0.1em',
-                color: '#9b9b9b',
-              }}>
-                {s.num}
-              </span>
-
-              {/* Info */}
-              <div>
-                <h3 style={{
-                  fontFamily: 'Syne, sans-serif',
-                  fontSize: 'clamp(1.1rem, 2.5vw, 1.5rem)',
-                  fontWeight: 700,
-                  color: '#0a0a0a',
-                  letterSpacing: '-0.02em',
-                  marginBottom: '0.35rem',
-                }}>
-                  {s.title}
-                </h3>
-                <p style={{ fontSize: '0.85rem', color: '#6b6b6b', lineHeight: 1.65 }}>
-                  {s.desc}
-                </p>
-              </div>
-
-              {/* Arrow */}
-              <span style={{
-                fontFamily: 'Syne, sans-serif',
-                fontSize: '1.1rem',
-                color: '#9b9b9b',
-                transition: 'transform 0.2s, color 0.2s',
-              }}>
-                →
-              </span>
-            </a>
+            <ServiceRow key={s.title} s={s} i={i} />
           ))}
         </div>
       </div>
     </section>
+  )
+}
+
+function ServiceRow({ s, i }: { s: typeof SERVICES[0]; i: number }) {
+  return (
+    <a
+      href="/contact"
+      data-reveal
+      style={{
+        transitionDelay: `${i * 0.05}s`,
+        display: 'grid',
+        gridTemplateColumns: '60px 1fr 32px',
+        alignItems: 'center',
+        gap: '2rem',
+        padding: '1.75rem 1.25rem',
+        borderBottom: '1px solid #e8e8e8',
+        textDecoration: 'none',
+        borderRadius: '6px',
+        transition: 'background 0.2s',
+      }}
+      onMouseEnter={(e) => {
+        (e.currentTarget as HTMLElement).style.background = '#eeecea'
+      }}
+      onMouseLeave={(e) => {
+        (e.currentTarget as HTMLElement).style.background = 'transparent'
+      }}
+    >
+      {/* Number */}
+      <span style={{
+        fontFamily: 'Syne, sans-serif',
+        fontSize: '0.68rem',
+        fontWeight: 600,
+        letterSpacing: '0.1em',
+        color: '#b0b0b0',
+      }}>
+        {s.num}
+      </span>
+
+      {/* Info */}
+      <div>
+        <h3 style={{
+          fontFamily: 'Syne, sans-serif',
+          fontSize: 'clamp(1rem, 2.2vw, 1.4rem)',
+          fontWeight: 700,
+          color: '#0a0a0a',
+          letterSpacing: '-0.02em',
+          marginBottom: '0.3rem',
+        }}>
+          {s.title}
+        </h3>
+        <p style={{ fontSize: '0.83rem', color: '#6b6b6b', lineHeight: 1.65 }}>
+          {s.desc}
+        </p>
+      </div>
+
+      {/* Arrow */}
+      <span style={{
+        fontSize: '1rem',
+        color: '#b0b0b0',
+        fontFamily: 'sans-serif',
+      }}>
+        →
+      </span>
+    </a>
   )
 }
