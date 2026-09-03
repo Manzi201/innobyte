@@ -1,110 +1,135 @@
+'use client'
+
 const SERVICES = [
   {
-    icon: '🌐',
+    num: '01',
     title: 'Website Design',
-    desc: 'Business, personal, school websites & landing pages. Modern, fast, mobile-friendly.',
-    features: ['Responsive design', 'SEO optimized', 'Fast loading', 'CMS ready'],
-    color: '#0ea5e9',
+    desc: 'Business sites, personal portfolios, school websites and landing pages. Responsive, fast, and built to convert.',
   },
   {
-    icon: '🎨',
+    num: '02',
     title: 'Graphic Design',
-    desc: 'Logos, posters, business cards, certificates & social media designs.',
-    features: ['Logo & branding', 'Print materials', 'Social media kits', 'Certificates'],
-    color: '#8b5cf6',
+    desc: 'Logos, posters, business cards, certificates and social media visuals that define your identity.',
   },
   {
-    icon: '💻',
+    num: '03',
     title: 'Computer Services',
-    desc: 'Windows/software installation, formatting, troubleshooting & optimization.',
-    features: ['OS installation', 'Software setup', 'Virus removal', 'Speed optimization'],
-    color: '#10b981',
+    desc: 'OS installation, software setup, virus removal and system optimization — done right, done fast.',
   },
   {
-    icon: '🛠️',
+    num: '04',
     title: 'IT Support',
-    desc: 'Computer, software & printer setup and full technical support.',
-    features: ['Hardware setup', 'Printer config', 'Network setup', 'Remote support'],
-    color: '#f59e0b',
+    desc: 'Hardware configuration, printer setup, network installation and on-demand remote assistance.',
   },
   {
-    icon: '📱',
-    title: 'Social Media Services',
-    desc: 'Page setup, content creation, post design & ongoing management.',
-    features: ['Page creation', 'Content strategy', 'Post design', 'Growth management'],
-    color: '#ec4899',
+    num: '05',
+    title: 'Social Media',
+    desc: 'Page creation, content strategy, post design and ongoing management to grow your audience.',
   },
   {
-    icon: '📊',
+    num: '06',
     title: 'Data Services',
-    desc: 'Data entry, Excel work, data cleaning & document conversion.',
-    features: ['Data entry', 'Excel reports', 'Data cleaning', 'File conversion'],
-    color: '#06b6d4',
+    desc: 'Data entry, Excel reporting, data cleaning and file conversion handled with precision.',
   },
   {
-    icon: '📄',
+    num: '07',
     title: 'Digital Documents',
-    desc: 'CVs, business profiles, company reports & professional documents.',
-    features: ['Professional CVs', 'Company profiles', 'Business reports', 'Formal letters'],
-    color: '#6366f1',
+    desc: 'Professional CVs, company profiles, business reports and formal correspondence.',
   },
 ]
 
 export default function Services() {
   return (
-    <section id="services" style={{ backgroundColor: '#f8fafc', padding: '6rem 1.5rem' }}>
-      <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+    <section id="services" style={{ backgroundColor: '#fafaf8', padding: '8rem 2.5rem' }}>
+      <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
 
         {/* Header */}
-        <div data-reveal style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
-          <div className="section-tag" style={{ margin: '0 auto 1rem' }}>
-            <span>⚡</span> What We Do
+        <div data-reveal style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '5rem', flexWrap: 'wrap', gap: '2rem', borderBottom: '1px solid #e8e8e8', paddingBottom: '3rem' }}>
+          <div>
+            <div className="eyebrow">What We Do</div>
+            <h2 style={{ fontFamily: 'Syne, sans-serif', fontSize: 'clamp(2.2rem, 5vw, 3.5rem)', fontWeight: 800, color: '#0a0a0a', letterSpacing: '-0.04em', lineHeight: 1 }}>
+              Our Services
+            </h2>
           </div>
-          <h2 style={{ fontFamily: 'Space Grotesk, Inter, sans-serif', fontSize: 'clamp(1.8rem, 4vw, 2.6rem)', fontWeight: 700, color: '#0f172a', letterSpacing: '-0.02em', marginBottom: '1rem' }}>
-            Our Services
-          </h2>
-          <p style={{ fontSize: '1.05rem', color: '#64748b', maxWidth: '520px', margin: '0 auto', lineHeight: 1.7 }}>
-            Everything your business needs in the digital world — under one roof.
+          <p style={{ fontSize: '0.95rem', color: '#6b6b6b', maxWidth: '340px', lineHeight: 1.75 }}>
+            Everything your business needs in the digital world — under one roof, delivered with precision.
           </p>
         </div>
 
-        {/* Grid */}
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-          gap: '1.5rem',
-        }}>
+        {/* Service list */}
+        <div>
           {SERVICES.map((s, i) => (
-            <div key={s.title} className="service-card" data-reveal style={{ transitionDelay: `${i * 0.07}s` }}>
-              {/* Icon */}
-              <div style={{ width: '52px', height: '52px', borderRadius: '12px', background: `${s.color}18`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.5rem', marginBottom: '1rem' }}>
-                {s.icon}
+            <a
+              key={s.title}
+              href="/contact"
+              data-reveal
+              style={{
+                transitionDelay: `${i * 0.05}s`,
+                display: 'grid',
+                gridTemplateColumns: '72px 1fr auto',
+                alignItems: 'center',
+                gap: '2rem',
+                padding: '2rem 0',
+                borderBottom: '1px solid #e8e8e8',
+                textDecoration: 'none',
+                cursor: 'pointer',
+                transition: 'background 0.2s',
+              }}
+              onMouseEnter={(e) => {
+                const el = e.currentTarget as HTMLElement
+                el.style.paddingLeft = '1.5rem'
+                el.style.paddingRight = '1.5rem'
+                el.style.margin = '0 -1.5rem'
+                el.style.background = '#f0efeb'
+                el.style.borderRadius = '4px'
+              }}
+              onMouseLeave={(e) => {
+                const el = e.currentTarget as HTMLElement
+                el.style.paddingLeft = '0'
+                el.style.paddingRight = '0'
+                el.style.margin = '0'
+                el.style.background = 'transparent'
+                el.style.borderRadius = '0'
+              }}
+            >
+              {/* Number */}
+              <span style={{
+                fontFamily: 'Syne, sans-serif',
+                fontSize: '0.7rem',
+                fontWeight: 600,
+                letterSpacing: '0.1em',
+                color: '#9b9b9b',
+              }}>
+                {s.num}
+              </span>
+
+              {/* Info */}
+              <div>
+                <h3 style={{
+                  fontFamily: 'Syne, sans-serif',
+                  fontSize: 'clamp(1.1rem, 2.5vw, 1.5rem)',
+                  fontWeight: 700,
+                  color: '#0a0a0a',
+                  letterSpacing: '-0.02em',
+                  marginBottom: '0.35rem',
+                }}>
+                  {s.title}
+                </h3>
+                <p style={{ fontSize: '0.85rem', color: '#6b6b6b', lineHeight: 1.65 }}>
+                  {s.desc}
+                </p>
               </div>
 
-              <h3 style={{ fontFamily: 'Space Grotesk, Inter, sans-serif', fontSize: '1.1rem', fontWeight: 700, color: '#0f172a', marginBottom: '0.5rem' }}>
-                {s.title}
-              </h3>
-              <p style={{ fontSize: '0.88rem', color: '#64748b', lineHeight: 1.65, marginBottom: '1.2rem' }}>
-                {s.desc}
-              </p>
-
-              {/* Feature list */}
-              <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
-                {s.features.map((f) => (
-                  <li key={f} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.82rem', color: '#475569', fontWeight: 500 }}>
-                    <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: s.color, flexShrink: 0 }} />
-                    {f}
-                  </li>
-                ))}
-              </ul>
-
-              {/* Bottom accent */}
-              <div style={{ marginTop: '1.5rem', paddingTop: '1rem', borderTop: '1px solid #f1f5f9' }}>
-                <a href="/contact" style={{ fontSize: '0.82rem', fontWeight: 600, color: s.color, textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '0.3rem', transition: 'gap 0.15s' }}>
-                  Get started →
-                </a>
-              </div>
-            </div>
+              {/* Arrow */}
+              <span style={{
+                fontFamily: 'Syne, sans-serif',
+                fontSize: '1.1rem',
+                color: '#9b9b9b',
+                transition: 'transform 0.2s, color 0.2s',
+              }}>
+                →
+              </span>
+            </a>
           ))}
         </div>
       </div>

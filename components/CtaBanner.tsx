@@ -1,24 +1,82 @@
 export default function CtaBanner() {
   return (
-    <section style={{ background: 'linear-gradient(135deg, #0f172a 0%, #1e3a5f 100%)', padding: '5rem 1.5rem', position: 'relative', overflow: 'hidden' }}>
-      {/* Glow */}
-      <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', width: '600px', height: '300px', borderRadius: '50%', background: 'radial-gradient(circle, rgba(14,165,233,0.15) 0%, transparent 70%)', zIndex: 0 }} />
+    <section style={{
+      background: '#0a0a0a',
+      padding: '8rem 2.5rem',
+      position: 'relative',
+      overflow: 'hidden',
+    }}>
 
-      <div data-reveal style={{ position: 'relative', zIndex: 1, maxWidth: '700px', margin: '0 auto', textAlign: 'center' }}>
-        <h2 style={{ fontFamily: 'Space Grotesk, Inter, sans-serif', fontSize: 'clamp(1.7rem, 4vw, 2.5rem)', fontWeight: 700, color: '#fff', letterSpacing: '-0.02em', marginBottom: '1rem', lineHeight: 1.25 }}>
-          Ready to Build Something Great?
+      {/* Large decorative text */}
+      <div style={{
+        position: 'absolute',
+        bottom: '-0.15em',
+        left: '50%',
+        transform: 'translateX(-50%)',
+        fontFamily: 'Syne, sans-serif',
+        fontSize: 'clamp(80px, 18vw, 220px)',
+        fontWeight: 800,
+        color: 'rgba(255,255,255,0.03)',
+        letterSpacing: '-0.04em',
+        lineHeight: 1,
+        whiteSpace: 'nowrap',
+        userSelect: 'none',
+        pointerEvents: 'none',
+      }}>
+        INNOBYTE
+      </div>
+
+      <div data-reveal style={{
+        position: 'relative',
+        zIndex: 1,
+        maxWidth: '800px',
+        margin: '0 auto',
+        textAlign: 'center',
+      }}>
+        <div style={{
+          fontFamily: 'Syne, sans-serif',
+          fontSize: '0.7rem',
+          fontWeight: 600,
+          letterSpacing: '0.2em',
+          textTransform: 'uppercase',
+          color: 'rgba(255,255,255,0.3)',
+          marginBottom: '2rem',
+        }}>
+          Let&apos;s Work Together
+        </div>
+        <h2 style={{
+          fontFamily: 'Syne, sans-serif',
+          fontSize: 'clamp(2.4rem, 7vw, 5.5rem)',
+          fontWeight: 800,
+          color: '#fff',
+          letterSpacing: '-0.04em',
+          lineHeight: 0.95,
+          marginBottom: '3rem',
+        }}>
+          Ready to build<br />something great?
         </h2>
-        <p style={{ fontSize: '1.05rem', color: 'rgba(255,255,255,0.6)', marginBottom: '2.5rem', lineHeight: 1.7 }}>
-          Contact INNOBYTE today and get a free consultation. We&apos;re fast, affordable and professional.
+        <p style={{
+          fontSize: '1rem',
+          color: 'rgba(255,255,255,0.4)',
+          marginBottom: '3rem',
+          lineHeight: 1.75,
+          maxWidth: '460px',
+          margin: '0 auto 3rem',
+        }}>
+          Get in touch today for a free consultation. We&apos;re fast, affordable, and professional.
         </p>
         <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-          <a href="/contact" className="btn-primary" style={{ fontSize: '1rem', padding: '0.9rem 2.5rem' }}>
-            Get Free Quote →
+          <a href="/contact" className="btn-gold" style={{ fontSize: '0.82rem' }}>
+            Get Free Quote
           </a>
-          <a href="https://wa.me/250780000000" target="_blank" rel="noopener noreferrer"
-            style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: '#25d366', color: '#fff', fontFamily: 'Inter, sans-serif', fontSize: '1rem', fontWeight: 600, padding: '0.9rem 2.5rem', borderRadius: '6px', textDecoration: 'none', transition: 'opacity 0.18s' }}
+          <a
+            href="https://wa.me/250780000000"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-outline"
+            style={{ fontSize: '0.82rem' }}
           >
-            💬 WhatsApp Us
+            WhatsApp Us
           </a>
         </div>
       </div>

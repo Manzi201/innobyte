@@ -1,51 +1,81 @@
 'use client'
 
 const REASONS = [
-  { icon: '🎯', title: 'Results-Focused', desc: 'Every project is built with your business goals in mind. We deliver work that actually works.' },
-  { icon: '⚡', title: 'Fast Turnaround', desc: 'No long waits. We respect your time and deliver projects on schedule, every time.' },
-  { icon: '💰', title: 'Affordable Pricing', desc: 'Professional quality at fair, transparent prices. No hidden fees, no surprises.' },
-  { icon: '🤝', title: 'Dedicated Support', desc: 'We stay with you after delivery. Questions? Need updates? We\'re always here.' },
-  { icon: '🔒', title: 'Reliable & Secure', desc: 'Your data and projects are handled with full confidentiality and professionalism.' },
-  { icon: '🌍', title: 'Local & Global', desc: 'Based in Rwanda, serving clients locally and internationally with modern digital solutions.' },
+  { title: 'Results-Focused', desc: 'Every project is built around your goals. We measure success by the impact we create for your business.' },
+  { title: 'Fast Turnaround', desc: 'We respect your time. Projects are delivered on schedule with consistent updates throughout.' },
+  { title: 'Fair Pricing', desc: 'Professional quality at transparent prices. No hidden fees, no vague quotes.' },
+  { title: 'Ongoing Support', desc: 'We stay with you after delivery — for updates, questions, or new ideas.' },
+  { title: 'Confidential', desc: 'Your data and projects are handled with complete professionalism and confidentiality.' },
+  { title: 'Local Expertise', desc: 'Based in Rwanda, we understand the local market while delivering globally competitive work.' },
 ]
 
 export default function WhyUs() {
   return (
-    <section style={{ backgroundColor: '#fff', padding: '6rem 1.5rem' }}>
-      <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+    <section style={{ backgroundColor: '#0a0a0a', padding: '8rem 2.5rem' }}>
+      <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(480px, 1fr))', gap: '4rem', alignItems: 'center' }}>
-
-          {/* Left — text */}
+        {/* Top row */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: '5rem', marginBottom: '6rem', alignItems: 'end' }}>
           <div data-reveal="left">
-            <div className="section-tag" style={{ marginBottom: '1rem' }}>
-              <span>💡</span> Why Choose Us
+            <div style={{ fontFamily: 'Syne, sans-serif', fontSize: '0.7rem', fontWeight: 600, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)', display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.5rem' }}>
+              <span style={{ width: '28px', height: '1px', background: 'rgba(255,255,255,0.3)' }} />
+              Why Choose Us
             </div>
-            <h2 style={{ fontFamily: 'Space Grotesk, Inter, sans-serif', fontSize: 'clamp(1.7rem, 3.5vw, 2.4rem)', fontWeight: 700, color: '#0f172a', letterSpacing: '-0.02em', marginBottom: '1.2rem', lineHeight: 1.2 }}>
+            <h2 style={{ fontFamily: 'Syne, sans-serif', fontSize: 'clamp(2.2rem, 5vw, 3.5rem)', fontWeight: 800, color: '#fff', letterSpacing: '-0.04em', lineHeight: 1 }}>
               The INNOBYTE<br />
-              <span className="gradient-text">Difference</span>
+              Difference
             </h2>
-            <p style={{ fontSize: '1rem', color: '#64748b', lineHeight: 1.8, marginBottom: '2rem', maxWidth: '440px' }}>
-              We combine technical expertise with creative thinking to deliver digital solutions that make your business stand out — and grow.
+          </div>
+          <div data-reveal="right">
+            <p style={{ fontSize: '1rem', color: 'rgba(255,255,255,0.45)', lineHeight: 1.8, marginBottom: '2.5rem' }}>
+              We combine technical precision with creative thinking to build digital solutions that make your business stand out — and keep growing.
             </p>
-            <a href="/contact" className="btn-primary">
-              Start a Project →
+            <a href="/contact" className="btn-gold">
+              Start a Project
             </a>
           </div>
+        </div>
 
-          {/* Right — reasons grid */}
-          <div data-reveal="right" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.25rem' }}>
-            {REASONS.map((r, i) => (
-              <div key={r.title} data-reveal style={{ transitionDelay: `${i * 0.08}s`, background: '#f8fafc', borderRadius: '12px', padding: '1.25rem', border: '1.5px solid #e2e8f0', transition: 'box-shadow 0.2s, border-color 0.2s' }}
-                onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.boxShadow = '0 6px 24px rgba(14,165,233,0.12)'; (e.currentTarget as HTMLElement).style.borderColor = '#0ea5e9' }}
-                onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.boxShadow = 'none'; (e.currentTarget as HTMLElement).style.borderColor = '#e2e8f0' }}
-              >
-                <div style={{ fontSize: '1.4rem', marginBottom: '0.5rem' }}>{r.icon}</div>
-                <h4 style={{ fontFamily: 'Space Grotesk, Inter, sans-serif', fontSize: '0.9rem', fontWeight: 700, color: '#0f172a', marginBottom: '0.3rem' }}>{r.title}</h4>
-                <p style={{ fontSize: '0.78rem', color: '#64748b', lineHeight: 1.6 }}>{r.desc}</p>
+        {/* Reasons grid */}
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+          gap: '0',
+          border: '1px solid rgba(255,255,255,0.08)',
+        }}>
+          {REASONS.map((r, i) => (
+            <div
+              key={r.title}
+              data-reveal
+              style={{
+                transitionDelay: `${i * 0.07}s`,
+                padding: '2.5rem',
+                borderRight: (i + 1) % 3 !== 0 ? '1px solid rgba(255,255,255,0.08)' : 'none',
+                borderBottom: i < 3 ? '1px solid rgba(255,255,255,0.08)' : 'none',
+                transition: 'background 0.2s',
+              }}
+              onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = 'rgba(255,255,255,0.03)' }}
+              onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = 'transparent' }}
+            >
+              <div style={{
+                fontFamily: 'Syne, sans-serif',
+                fontSize: '0.65rem',
+                fontWeight: 600,
+                letterSpacing: '0.15em',
+                textTransform: 'uppercase',
+                color: 'rgba(255,255,255,0.25)',
+                marginBottom: '1.25rem',
+              }}>
+                {String(i + 1).padStart(2, '0')}
               </div>
-            ))}
-          </div>
+              <h4 style={{ fontFamily: 'Syne, sans-serif', fontSize: '1rem', fontWeight: 700, color: '#fff', marginBottom: '0.75rem', letterSpacing: '-0.01em' }}>
+                {r.title}
+              </h4>
+              <p style={{ fontSize: '0.82rem', color: 'rgba(255,255,255,0.4)', lineHeight: 1.7 }}>
+                {r.desc}
+              </p>
+            </div>
+          ))}
         </div>
       </div>
     </section>
